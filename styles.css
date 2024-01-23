@@ -1,3 +1,12 @@
 *   {
     outline: 1px solid red;
 }
+
+.header {
+    display: flex;
+    
+}
+
+.sub-header {
+    justify-items: space-around;
+}

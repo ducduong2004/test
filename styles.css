@@ -1,3 +1,7 @@
 * {
     outline: 3px auto red;
 }
+
+.hello {
+    margin: 0 100;
+}

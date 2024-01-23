@@ -1,3 +1,7 @@
 .hello {
     color: red;
 }
+
+* {
+    outline: 2px solid red;
+}

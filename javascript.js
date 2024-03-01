@@ -1,58 +1,57 @@
-const computerChoice = Math.floor(Math.random() * 3) + 1;
 function getComputerChoice(a) {
   switch(a){
     case 1:
-      return 'Rock';
+      return 'ROCK';
     case 2:
-      return 'Paper';
+      return 'PAPER';
     case 3:
-      return 'Scissors';
+      return 'SCISSORS';
     }
 }
 
-function gameFunction(pChoice, cChoice){
+function gameFunction(pChoice){
+  console.log(pChoice);
+  if(pChoice === '') return '';
+  const computerChoice = Math.floor(Math.random() * 3) + 1;
+  let cChoice = getComputerChoice(computerChoice);
+  
 
   pChoice = pChoice.toUpperCase();
 
-  if(pChoice == "ROCK"){
-    switch(cChoice){
-      case "Rock":
-        return "tie";
-      case "Paper":
-        return "lost";
-      case "Scissors":
-        return "won";
-    }
-  }
-  else if(pChoice == "PAPER"){
-    switch(cChoice){
-      case "Rock":
-        return "won";
-      case "Paper":
-        return "Tie";
-      case "Scissors":
-        return "lost";
-    }
-  }
-    else if(pChoice == "SCISSORS"){
-      switch(cChoice){
-        case "Rock":
-          return "lost";
-        case "Paper":
-          return "won";
-        case "Scissors":
-          return "Tie";
-      }
-  }
+  if(pChoice === cChoice){
+    return 'tie';
+  } else if(
+    cChoice === 'ROCK' && pChoice === 'PAPER' || 
+    cChoice === 'PAPER' && pChoice ==='SCISSORS' || 
+    cChoice === 'SCISSORS' && pChoice ==='ROCK') {
+    return 'won';
+  } else return 'lost';
+  
 }
 
-let pChoice = prompt();
-let cChoice = getComputerChoice(computerChoice);
-console.log(gameFunction(pChoice,cChoice));
-console.log(cChoice);
-console.log(pChoice);
+let btns = document.querySelectorAll('.selection');
+let result = document.querySelector('#result');
+let score = document.querySelector('#Scoreboard p:nth-child(1)');
+let round = document.querySelector('#Scoreboard p:nth-child(2)');
+let scoreb = 0;
+let roundNum = 0;
 
+btns.forEach(e => {
+e.addEventListener('click', (e) => {
+    let matchResult = gameFunction(e.target.id);
+    result.innerHTML = matchResult;
+  
+    roundNum++;
+    round.innerHTML = 'Round: ' + roundNum;
+  
+    if(matchResult === 'won')
+      {
+        scoreb++;
+        score.innerHTML = 'Score: ' + scoreb;
+      }
 
+  
+  });
 
-
+});
 

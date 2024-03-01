@@ -1,0 +1,9 @@
+
+#outside {
+    display: flex;
+    align-items: center;
+}
+
+#selection {
+   display: block;
+}
